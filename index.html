@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>МЕЗОН — Кондитерский дом авторских мини-рулетов</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header" id="header">
+    <div class="header-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-title">МЕЗОН</span>
+        <span class="logo-sub">ROULEAUX</span>
+      </a>
+      
+      <nav class="site-nav" aria-label="Главное меню">
+        <a href="#catalog" class="nav-link">Коллекции</a>
+        <a href="#builder" class="nav-link">Собрать Сет</a>
+        <a href="#story" class="nav-link">Наша История</a>
+        <a href="#tasting" class="nav-link" id="nav-tasting-link">Дегустация</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Settings Toggle (Gear Icon) -->
+        <button type="button" class="icon-btn" id="btn-settings-toggle" aria-label="Настройки темы и стиля" title="Настройки интерфейса">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+
+        <!-- Dropdown Settings Panel -->
+        <div class="settings-dropdown hidden" id="settings-dropdown">
+          <div class="settings-dropdown-header">
+            <span class="settings-dropdown-title">Настройки интерфейса</span>
+            <button type="button" class="btn-reset-settings" id="btn-reset-settings">Сброс</button>
+          </div>
+
+          <!-- Theme Slider -->
+          <div class="glass-control-group">
+            <div class="glass-control-label">
+              <span>Тема оформления:</span>
+              <span class="glass-control-val" id="theme-val-display">Тёмная 🌙</span>
+            </div>
+            <div class="slider-with-labels">
+              <span class="slider-min-label">🌙</span>
+              <input type="range" id="theme-slider" class="glass-slider" min="0" max="1" value="0" step="1">
+              <span class="slider-max-label">☀️</span>
+            </div>
+          </div>
+
+          <div class="glass-divider"></div>
+
+          <!-- Glass Blur Slider -->
+          <div class="glass-control-group">
+            <div class="glass-control-label">
+              <span>Размытие (Blur):</span>
+              <span class="glass-control-val" id="blur-val-display">16px</span>
+            </div>
+            <input type="range" id="glass-blur-slider" class="glass-slider" min="0" max="40" value="16" step="1">
+          </div>
+
+          <!-- Glass Opacity Slider -->
+          <div class="glass-control-group">
+            <div class="glass-control-label">
+              <span>Прозрачность стекла:</span>
+              <span class="glass-control-val" id="opacity-val-display">12%</span>
+            </div>
+            <input type="range" id="glass-opacity-slider" class="glass-slider" min="5" max="40" value="12" step="1">
+          </div>
+        </div>
+
+        <!-- Search Button -->
+        <button type="button" class="icon-btn" id="btn-search-toggle" aria-label="Поиск по каталогу">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+
+        <!-- Cart Button -->
+        <button type="button" class="icon-btn cart-btn" id="btn-cart-toggle" aria-label="Открыть корзину">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <span class="hero-tagline">ОСЕНЬ / ЗИМА 2026</span>
+      <h1 class="hero-title">Искусство вечной элегантности</h1>
+      <p class="hero-description">
+        Откройте для себя нашу подобранную коллекцию исключительных мини-рулетов, созданных с бескомпромиссным вниманием к деталям, свежим ягодам и натуральным сливкам.
+      </p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn btn-glass-primary">ИЗУЧИТЬ КОЛЛЕКЦИЮ</a>
+        <button type="button" class="btn btn-glass-secondary" id="btn-hero-booking">ЗАПИСАТЬСЯ НА ДЕГУСТАЦИЮ</button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" data-target="150">0</span>
+          <span class="stat-label">ЭКСКЛЮЗИВНЫЕ РЕЦЕПТУРЫ</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="48">0</span>
+          <span class="stat-label">ГЛОБАЛЬНЫЕ ДЕГУСТАЦИИ</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="1892">0</span>
+          <span class="stat-label">ЭСТ. ПАРИЖ &amp; КОСТАНАЙ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Bar Slide-down -->
+  <div class="search-overlay hidden" id="search-overlay">
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Поиск мини-рулета по названию или ингредиенту..." aria-label="Поиск">
+      <button type="button" class="btn-close" id="btn-search-close" aria-label="Закрыть поиск">&times;</button>
+    </div>
+  </div>
+
+  <!-- Catalog Section -->
+  <section class="catalog-section" id="catalog">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">КОЛЛЕКЦИЯ ДЕСЕРТОВ</span>
+        <h2 class="section-title">Авторские мини-рулеты</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="filter-bar" id="category-filters">
+        <button type="button" class="filter-btn active" data-category="all">Все десерты</button>
+        <button type="button" class="filter-btn" data-category="berry">Ягодные</button>
+        <button type="button" class="filter-btn" data-category="nut">Фисташка &amp; Орех</button>
+        <button type="button" class="filter-btn" data-category="chocolate">Шоколадные</button>
+        <button type="button" class="filter-btn" data-category="zero">Без сахара</button>
+      </div>
+
+      <div class="product-grid" id="product-grid">
+        <!-- JS Dynamic Output -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Set Builder Section -->
+  <section class="builder-section" id="builder">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">ИНТЕРАКТИВНЫЙ ОПЫТ</span>
+        <h2 class="section-title">Соберите свой дегустационный сет</h2>
+        <p class="section-desc">Выберите размер бокса и наполните его любимыми мини-рулетами в любом сочетании.</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="builder-layout">
+        <div class="builder-selection">
+          <div class="size-selector">
+            <span class="label">Размер бокса:</span>
+            <button type="button" class="btn-size active" data-size="6">Бокс на 6 шт</button>
+            <button type="button" class="btn-size" data-size="12">Бокс на 12 шт</button>
+          </div>
+
+          <div class="builder-rolls-list" id="builder-rolls-list">
+            <!-- Rolls choice -->
+          </div>
+        </div>
+
+        <div class="builder-summary-card">
+          <h3 class="summary-title">Ваш персональный сет</h3>
+          <div class="box-progress">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="builder-progress"></div></div>
+            <span class="progress-text" id="builder-count-text">0 / 6 шт заполнено</span>
+          </div>
+
+          <div class="box-slots-grid" id="box-slots">
+            <!-- Selected items visualization -->
+          </div>
+
+          <div class="summary-details">
+            <div class="summary-row">
+              <span>Итоговый вес:</span>
+              <strong id="builder-total-weight">0 г</strong>
+            </div>
+            <div class="summary-row">
+              <span>Энергетическая ценность:</span>
+              <strong id="builder-total-calories">0 ккал</strong>
+            </div>
+            <div class="summary-row total-price-row">
+              <span>Стоимость сета:</span>
+              <strong id="builder-total-price">0 ₸</strong>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-glass-primary btn-block" id="btn-add-builder-to-cart" disabled>
+            ДОБАВИТЬ СЕТ В КОРЗИНУ
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Story Section -->
+  <section class="story-section" id="story">
+    <div class="container story-grid">
+      <div class="story-content">
+        <span class="section-subtitle">ФИЛОСОФИЯ МЕЗОН</span>
+        <h2 class="section-title">Мастерство ручной работы &amp; чистые ингредиенты</h2>
+        <p class="story-text">
+          Каждый мини-рулет в Доме «МЕЗОН» — это результат многочасовой кропотливой работы шеф-кондитеров. Мы отказываемся от искусственных ароматизаторов, используем только натуральные бельгийские сливки, сублимированные ягоды и органическую фисташковую пасту.
+        </p>
+        <p class="story-text">
+          Миниатюрный формат позволяет сохранить идеальный баланс бисквитной основы и кремовой начинки, создавая гармонию вкуса в каждом кусочке.
+        </p>
+        <div class="story-badges">
+          <div class="badge-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span>100% Натурально</span>
+          </div>
+          <div class="badge-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Свежая выпечка daily</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-visual">
+        <div class="visual-card-frame">
+          <span class="craft-tag">CRAFT QUALITY</span>
+          <p class="craft-quote">«Элегантность десерта выражается в его простоте и безупречном вкусе»</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Footer -->
+  <footer class="site-footer">
+    <div class="newsletter-section">
+      <div class="newsletter-container">
+        <h3 class="newsletter-title">Оставайтесь на связи</h3>
+        <p class="newsletter-subtitle">
+          Подпишитесь, чтобы получать обновления о новых покупках, эксклюзивных предложениях и советах по стилю.
+        </p>
+        <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); if(window.App &amp;&amp; App.modules &amp;&amp; App.modules.modal) App.modules.modal.showToast('Вы успешно подписались на рассылку!'); this.reset();">
+          <input type="email" class="newsletter-input" placeholder="Введите свой email" required aria-label="Введите свой email">
+          <button type="submit" class="btn-subscribe">ПОДПИСАТЬСЯ</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <a href="#" class="brand-logo">
+          <span class="logo-title">МЕЗОН</span>
+          <span class="logo-sub">ROULEAUX</span>
+        </a>
+        <p class="brand-tagline">
+          Создавая вечную элегантность с 1892 года. Париж • Милан • Нью-Йорк • Токио
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">МАГАЗИН</h4>
+        <ul class="footer-menu">
+          <li><a href="#catalog">Новые прибывшие</a></li>
+          <li><a href="#catalog">Коллекции</a></li>
+          <li><a href="#builder">Аксессуары</a></li>
+          <li><a href="#catalog">Продажа</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">УСЛУГИ</h4>
+        <ul class="footer-menu">
+          <li><a href="#tasting">Личный стиль</a></li>
+          <li><a href="#tasting">Изменения</a></li>
+          <li><a href="#tasting">Подарочные карты</a></li>
+          <li><a href="#tasting">Поиск магазинов</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">КОМПАНИЯ</h4>
+        <ul class="footer-menu">
+          <li><a href="#story">Наша история</a></li>
+          <li><a href="#story">Карьера</a></li>
+          <li><a href="#story">Пресса</a></li>
+          <li><a href="#story">Устойчивое развитие</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">ПОДДЕРЖКА</h4>
+        <ul class="footer-menu">
+          <li><a href="#story">Связаться с нами</a></li>
+          <li><a href="#story">Судоходство</a></li>
+          <li><a href="#story">Возвраты</a></li>
+          <li><a href="#story">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="container footer-bottom">
+      <p class="copyright-text">&copy; Дом 2026 года. Все права защищены.</p>
+      <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Pinterest">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.87 6.3 9.3-.09-.79-.17-2 .04-2.87.19-.79 1.23-5.21 1.23-5.21s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.68 1.33 1.49 0 .91-.58 2.27-.88 3.53-.25 1.05.53 1.91 1.56 1.91 1.88 0 3.32-1.98 3.32-4.84 0-2.53-1.82-4.3-4.41-4.3-3.01 0-4.77 2.26-4.77 4.59 0 .91.35 1.88.79 2.41.09.11.1.21.07.33-.08.32-.26 1.05-.29 1.2-.05.21-.18.25-.41.15-1.52-.71-2.47-2.93-2.47-4.72 0-3.84 2.79-7.37 8.06-7.37 4.23 0 7.52 3.01 7.52 7.04 0 4.2-2.65 7.58-6.33 7.58-1.24 0-2.4-0.64-2.8-1.4l-.76 2.91c-.28 1.07-1.03 2.41-1.54 3.23C9.6 21.84 10.77 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="YouTube">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Quick View Product -->
+  <div class="modal-overlay hidden" id="modal-product">
+    <div class="modal-card">
+      <button type="button" class="btn-close modal-close">&times;</button>
+      <div class="product-modal-content" id="product-modal-body">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Tasting Booking -->
+  <div class="modal-overlay hidden" id="modal-booking">
+    <div class="modal-card booking-card">
+      <button type="button" class="btn-close modal-close">&times;</button>
+      <h3 class="modal-title" style="font-size: 2rem; margin-bottom: 8px;">Запись на закрытую дегустацию</h3>
+      <p class="modal-subtitle" style="color: var(--color-text-muted); margin-bottom: 20px;">Оставьте заявку, и наш сомелье десертов свяжется с вами для подтверждения даты.</p>
+      
+      <form id="booking-form" class="booking-form">
+        <div class="form-group">
+          <label for="book-name">Ваше имя</label>
+          <input type="text" id="book-name" required placeholder="Евгений">
+        </div>
+        <div class="form-group">
+          <label for="book-phone">Номер телефона</label>
+          <input type="tel" id="book-phone" required placeholder="+7 (777) 000-0000">
+        </div>
+        <div class="form-group">
+          <label for="book-date">Предпочитаемая дата</label>
+          <input type="date" id="book-date" required>
+        </div>
+        <div class="form-group">
+          <label for="book-guests">Количество гостей</label>
+          <select id="book-guests">
+            <option value="1-2">1 - 2 персоны</option>
+            <option value="3-5">3 - 5 персон</option>
+            <option value="VIP">Закрытый VIP сет (до 10 персон)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-glass-primary btn-block" style="margin-top: 12px;">ПОДТВЕРДИТЬ БРОНИРОВАНИЕ</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Drawer: Cart Panel -->
+  <div class="cart-drawer-backdrop hidden" id="cart-drawer-backdrop"></div>
+  <aside class="cart-drawer hidden" id="cart-drawer" aria-label="Корзина покупателя">
+    <div class="cart-drawer-header">
+      <h3 class="cart-drawer-title">Ваша корзина</h3>
+      <button type="button" class="btn-close" id="btn-cart-close">&times;</button>
+    </div>
+
+    <div class="cart-drawer-body" id="cart-items-container">
+      <!-- Dynamic cart items -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row" style="display: flex; justify-content: space-between; font-size: 1.1rem; margin-bottom: 16px;">
+        <span>Итого к оплате:</span>
+        <strong id="cart-total-sum" style="color: var(--color-accent);">0 ₸</strong>
+      </div>
+      <button type="button" class="btn btn-glass-primary btn-block" id="btn-checkout">ОФОРМИТЬ ЗАКАЗ</button>
+    </div>
+  </aside>
+
+  <!-- Toast Notifications -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="data/content.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/modules/storage.js" defer></script>
+  <script src="js/modules/theme.js" defer></script>
+  <script src="js/modules/counter.js" defer></script>
+  <script src="js/modules/catalog.js" defer></script>
+  <script src="js/modules/builder.js" defer></script>
+  <script src="js/modules/cart.js" defer></script>
+  <script src="js/modules/modal.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
